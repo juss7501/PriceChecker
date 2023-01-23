@@ -1,8 +1,10 @@
 import requests
+import smtplib
 from bs4 import BeautifulSoup
 from email.message import EmailMessage
 import time
 
+send_mail = True
 # function to check price
 def check_price():
     target_price = 1000
@@ -19,17 +21,18 @@ def check_price():
         price = int(price.replace(".", "").replace(",", ""))
         if price < target_price:
             send_notification(price)
+            send_mail = False
         print("The current price of the Samsung S22 is: " + str(price))
     else:
         print("Price element not found")
     return price
 # function to send notification
-import smtplib
+
 
 def send_notification(x):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login("juss7501@gmail.com", "xucibpohtrknzugs")
+    server.login("juss7501@gmail.com", "bunbczmapovokzvy")
     message = EmailMessage()
     message.set_content( "Price dropped to " + str(x))
     server.send_message(message,"juss7501@gmail.com","juss7501@gmail.com")
@@ -38,6 +41,8 @@ def send_notification(x):
     print("Notification sent")
 
 # main loop
-while False:
+
+while send_mail:
     check_price()
     time.sleep(60)
+
