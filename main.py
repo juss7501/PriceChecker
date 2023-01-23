@@ -38,6 +38,6 @@ def send_notification(x):
     print("Notification sent")
 
 # main loop
-while True:
+while False:
     check_price()
     time.sleep(60)
