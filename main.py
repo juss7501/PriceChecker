@@ -24,6 +24,7 @@ def check_price():
             send_mail = False
         print("The current price of the Samsung S22 is: " + str(price))
     else:
+        price = 0
         print("Price element not found")
     return price
 # function to send notification
